@@ -1,0 +1,32 @@
+GET  http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUGl5dXNoIiwiaWF0IjoxNjM0NDA1NjUwLCJleHAiOjE2MzQ0MDU2NjV9.qhL8KIWspYT6avL7d_S4aRgD41kZWBpZFyHLgIlDW-Y
+
+###
+DELETE http://localhost:4000/logout
+Content-Type: application/json
+
+{
+    "token":
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUGl5dXNoIiwiaWF0IjoxNjM4MDM4NjkyLCJleHAiOjE2MzgwMzg3MDd9.TVVr-eqIW6WSJPu44IGj_q4wCqgvQA3PqIM_eyQJ21E"
+
+    }
+
+
+
+###
+Post http://localhost:4000/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUGl5dXNoIiwiaWF0IjoxNjM4MDM4NjczfQ.2_WV7-YZGXObEIfIk52SCXBsMYANN3x-46aULfRmuTI"
+
+
+        }
+
+###
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{ 
+    "username": "Piyush"
+}

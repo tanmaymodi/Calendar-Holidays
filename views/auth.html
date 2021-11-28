@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhanam</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <!-- jquerry files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+</head>
+
+
+<body>
+
+
+    <!-- navbar starts -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Dhanam</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Auth <span class="sr-only">(current)</span></a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <!-- navbar ends -->
+
+    <br><br><br>
+    <br><br><br>
+
+
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-6">
+                <h4>Log In</h4>
+                <div class="input-group mb-3">
+
+                    <input class="form-control" type="email" placeholder="email" id="emailLogIn" name="emailLogIn"
+                        required aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Email</span>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+
+                    <input type="password" placeholder="password" id="passwordLogIn" name="passwordLogIn" required
+                        class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Password</span>
+                    </div>
+                </div>
+
+
+                <button onclick="login()" class="form-button">Log In</button>
+
+            </div>
+            <div class="col-sm-6">
+                <h4>Sign Up</h4>
+
+                <div class="input-group mb-3">
+
+                    <input type="email" placeholder="email" id="emailSignUp" name="emailSignUp" required
+                        class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Email</span>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+
+                    <input type="password" placeholder="confirm password" id="passwordSignUp1" name="passwordSignUp1"
+                        required class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Password</span>
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+
+                    <input type="password" placeholder="confirm password" id="passwordSignUp2" name="passwordSignUp2"
+                        onchange="confirmPwd()" required class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Confirm Password</span>
+                    </div>
+                </div>
+                <span id="passwordStrength"></span>
+
+                <button onclick="signup()" class="form-button">Sign Up</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function confirmPwd() {
+            var p1 = document.getElementById("passwordSignUp1").value;
+            var p2 = document.getElementById("passwordSignUp2").value;
+            if (p1 != p2) {
+                var message = "both password must be same";
+                document.getElementById("pwdMessage").innerHTML = message;
+            } else {
+                var message = "";
+                document.getElementById("pwdMessage").innerHTML = message;
+            }
+        }
+
+        function signup() {
+            var email = document.getElementById("emailSignUp").value;
+            var password = document.getElementById("passwordSignUp1").value;
+            $.post({
+                url: '/signup',
+                data: {
+                    "email": email,
+                    "password": password
+                },
+                success: function (res) {
+                    var status = res['status'];
+                    window.alert(status);
+                }
+            })
+        }
+
+        function login() {
+            var email = document.getElementById("emailLogIn").value
+            var password = document.getElementById("passwordLogIn").value
+            $.post({
+                url: '/login',
+                data: {
+                    "email": email,
+                    "password": password
+                },
+                success: function (res) {
+                    var status = res['status'];
+                    //window.alert(status);
+                    if (res['code'] == 200) {
+                        //load home page
+                        window.alert("Welcome");
+                        window.location.href = "/home";
+
+                    } else {
+                        window.alert(status);
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhanam Proect</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <!-- jquerry files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+</head>
+
+<body>
+    <!-- navbar starts -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+            </ul>
+
+            <button class="btn btn-outline-success my-2 my-sm-0 m-3" onclick="logout()">Log
+                Out</button>
+
+
+        </div>
+    </nav>
+
+    <!-- navbar ends -->
+
+
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-sm-6">
+                <!-- select time zomes -->
+                <label zone>Select Zone</label>
+                <p class="form-control" id="zoneData"></p>
+                <!-- select date range -->
+                <label for="startDate">Start Date</label><br>
+                <input type="date" name="startDate" id="startDate" class="form-control"><br>
+                <label for="endDate">End Date</label><br>
+                <input type="date" name="endDate" id="endDate" class="form-control"><br>
+                <button onclick="getData()">
+                    Fetch Data
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <form action="/forms" method="POST">
+        <input type="text" placeholder="name" name="name" class="form-field">
+        <input type="text" placeholder="quote" name="quote" class="form-field">
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <form action="/update" method="POST">
+        <input type="text" placeholder="name" name="name" class="form-field">
+        <input type="text" placeholder="quote" name="quote" class="form-field">
+        <button type="submit">Update</button>
+    </form> -->
+
+    <br>
+    <p id="holidays"></p>
+
+
+
+    <script>
+        $(document).ready(() => {
+            $.post({
+                url: '/fetch',
+                success: function (res) {
+                    console.log("result is:");
+                    // unmute ni kr sakta abi
+                    console.log(res);
+                    var zones = res['zones'];
+                    console.log(zones);
+                    var data = (`<select name="zones" id="zones">`);
+                    zones.forEach(zone => {
+                        data += (`<option name="zones" value="${zone}">${zone}</option>`);
+                    });
+                    data += `</select>`;
+
+                    $('#zoneData').html(data);
+
+                }
+            });
+        });
+
+        function getData(e) {
+            var startDate = document.getElementById('startDate').value;
+            var endDate = document.getElementById('endDate').value;
+            var zone = document.getElementById('zones').value;
+            console.log(startDate, endDate, zone);
+            $.post({
+                url: '/getData',
+                data: {
+                    'startDate': startDate,
+                    'endDate': endDate,
+                    'zone': zone
+                },
+                success: function (res) {
+                    console.log("result is:");
+                    console.log(res['holidays']);
+                    var holis = "";
+                    holis += "<table><tr><th>Holidays</th><th>Date</th></tr>";
+                    res["holidays"].forEach(holiday => {
+                        holis += "<tr>";
+                        holis += "<td>" + holiday["title"] + "</td>";
+                        holis += "<td>" + holiday["date"] + "</td>";
+                        holis += "</tr>";
+                    });
+                    holis += "</table>";
+
+                    $('#holidays').html(holis);
+
+                    // var zones = res['zones'];
+                    // console.log(zones);
+
+                }
+            });
+
+        }
+
+        function logout() {
+            $.post({
+                url: '/logout',
+                success: function () {
+                    window.alert("logged out");
+                    window.location.href = '/auth';
+                }
+            })
+        }
+    </script>
+
+
+</body>
+
+</html>
