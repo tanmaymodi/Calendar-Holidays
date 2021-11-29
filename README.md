@@ -9,7 +9,7 @@ After installing node.js and npm, clone "earth" and install dependencies:
 
 Next, launch the development web server:
 
-    node start
+    npm start
 
 Finally, point your browser to:
 
