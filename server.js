@@ -196,7 +196,7 @@ app.post('/getData', async(req, res) => {
 
 
 app.get('/home',(req,res)=>{
-    console.log("home executed");
+    //console.log("home executed");
     try{
         if(login__==true){
             return res.render("index.html");
