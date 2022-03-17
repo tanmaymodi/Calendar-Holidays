@@ -1,31 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
-const FormSchema = new Schema({
-    name: {
-        type: String,
-        required: [true, "name is required"]
-    }, 
-    quote: {
-        type: String,
-        required: [true, "quotes required"]
-    }
+const tanmay_111915132_detail = new Schema({
+    eid: String,
+    firstName: String,
+    lastName: String,
+    dob: Date,
+    contactNumber: String,
+    password:String
 })
 
-const authSchema = new Schema({
-    email:{
-        type: String,
-        required: [true, "Email required for auth"]
-    },
-    password: {
-        type: String,
-        required: [true, "password reqired for auth"]
-    }
+const tanmay_111915132_salary = new Schema({
+    eid: String,
+    jobRole: String,
+    monthlySalary: String,
+    yearlyBonus:String
 })
 
-const Form = mongoose.model("Form", FormSchema);
-const AuthData = mongoose.model("AuthData",authSchema);
+const Tanmay_111915132_detail = mongoose.model("Tanmay_111915132_detail", tanmay_111915132_detail);
+const Tanmay_111915132_salary = mongoose.model("Tanmay_111915132_salary",tanmay_111915132_salary);
 module.exports= {
-    Form,
-    AuthData
+    Tanmay_111915132_detail,
+    Tanmay_111915132_salary
 }

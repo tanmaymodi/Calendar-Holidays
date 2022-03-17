@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhanam</title>
+    <title>111915024 Ayush Maurya</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -26,13 +26,16 @@
 
 </head>
 
+<style>
 
-<body>
+</style>
+
+<body style="bg-color:grey">
 
 
     <!-- navbar starts -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Dhanam</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand" href="#">111915024 Ayush Maurya</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -61,10 +64,10 @@
                 <h4>Log In</h4>
                 <div class="input-group mb-3">
 
-                    <input class="form-control" type="email" placeholder="email" id="emailLogIn" name="emailLogIn"
-                        required aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input class="form-control" type="text" placeholder="Employee_ID_Number" id="emailLogIn"
+                        name="emailLogIn" required aria-label="Default" aria-describedby="inputGroup-sizing-default">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">Username</span>
+
                     </div>
                 </div>
 
@@ -73,7 +76,7 @@
                     <input type="password" placeholder="password" id="passwordLogIn" name="passwordLogIn" required
                         class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">Password</span>
+
                     </div>
                 </div>
 
@@ -81,69 +84,124 @@
                 <button onclick="login()" class="form-button">Log In</button>
 
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
                 <h4>Sign Up</h4>
 
                 <div class="input-group mb-3">
-
-                    <input type="email" placeholder="email" id="emailSignUp" name="emailSignUp" required
+                    <input type="text" placeholder="Employee_ID_Number" id="emailSignUp" name="emailSignUp" required
                         class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">Username</span>
+
                     </div>
                 </div>
 
                 <div class="input-group mb-3">
-
-                    <input type="password" placeholder="confirm password" id="passwordSignUp1" name="passwordSignUp1"
-                        required class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input type="text" placeholder="First Nmae" id="fname" required class="form-control"
+                        aria-label="Default" aria-describedby="inputGroup-sizing-default">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">Password</span>
+
                     </div>
                 </div>
 
                 <div class="input-group mb-3">
+                    <input type="text" placeholder="Last Name" id="lname" required class="form-control"
+                        aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
 
-                    <input type="password" placeholder="confirm password" id="passwordSignUp2" name="passwordSignUp2"
-                        onchange="confirmPwd()" required class="form-control" aria-label="Default"
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="date" placeholder="DOB" id="dob" name="emailSignUp" required class="form-control"
+                        aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+
+                    </div>
+                </div>
+
+
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="Contact Number" id="cnumber" required class="form-control"
+                        aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+
+                    </div>
+                </div>
+
+
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="Job Role" id="jr" required class="form-control" aria-label="Default"
                         aria-describedby="inputGroup-sizing-default">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">Confirm Password</span>
+
                     </div>
                 </div>
-                <span id="passwordStrength"></span>
+
+
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="Monthly Salary" id="ms" required class="form-control"
+                        aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+
+                    </div>
+                </div>
+
+
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="Yearly Bonus" id="yb" required class="form-control"
+                        aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="input-group mb-3">
+
+                    <input type="password" placeholder="Password" id="passwordSignUp1" name="passwordSignUp1" required
+                        class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-prepend">
+
+                    </div>
+                </div>
 
                 <button onclick="signup()" class="form-button">Sign Up</button>
-            </div>
+            </div> -->
         </div>
 
     </div>
 
     <script>
-        function confirmPwd() {
-            var p1 = document.getElementById("passwordSignUp1").value;
-            var p2 = document.getElementById("passwordSignUp2").value;
-            if (p1 != p2) {
-                var message = "both password must be same";
-                document.getElementById("pwdMessage").innerHTML = message;
-            } else {
-                var message = "";
-                document.getElementById("pwdMessage").innerHTML = message;
-            }
-        }
-
         function signup() {
-            var email = document.getElementById("emailSignUp").value;
+            var eid = document.getElementById("emailSignUp").value;
+            var fname = document.getElementById("fname").value;
+            var lname = document.getElementById("lname").value;
+            var dob = document.getElementById("dob").value;
+            var cn = document.getElementById("cnumber").value;
+            var jr = document.getElementById("jr").value;
+            var ms = document.getElementById("ms").value;
+            var yb = document.getElementById("yb").value;
             var password = document.getElementById("passwordSignUp1").value;
             $.post({
                 url: '/signup',
                 data: {
-                    "email": email,
-                    "password": password
+                    "eid": eid,
+                    "firstName": fname,
+                    "lastName": lname,
+                    "dob": dob,
+                    "contactNumber": cn,
+                    "password": password,
+                    'jr': jr,
+                    'ms': ms,
+                    'yb': yb
                 },
                 success: function (res) {
                     var status = res['status'];
                     window.alert(status);
+
                 }
             })
         }
@@ -154,7 +212,7 @@
             $.post({
                 url: '/login',
                 data: {
-                    "email": email,
+                    "eid": email,
                     "password": password
                 },
                 success: function (res) {
@@ -162,7 +220,7 @@
                     //window.alert(status);
                     if (res['code'] == 200) {
                         //load home page
-                        window.alert("Welcome");
+                        window.alert("Welcome, Log in successfull");
                         window.location.href = "/home";
 
                     } else {

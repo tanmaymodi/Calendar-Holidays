@@ -10,9 +10,12 @@ const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const MongoClient = require('mongodb').MongoClient
-const userModel = require('./models/user');
-const Form = userModel.Form;
-const AuthData = userModel.AuthData;
+const {
+    Tanmay_111915132_detail,
+    Tanmay_111915132_salary
+} = require('./models/user');
+// const UID = schemStyle.Tanmay_111915132_detail;
+// const SID = schemStyle.Tanmay_111915132_salary;
 const jwt = require('jsonwebtoken');
 var path = require('path')
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,17 +30,6 @@ const fetch = require('node-fetch');
 //post numbers
 const PORT = process.env.PORT || 3000;
 
-
-const posts = [
-    {
-      username: 'Kyle',
-      title: 'Post 1'
-    },
-    {
-      username: 'Jim',
-      title: 'Post 2'
-    }
-  ]
   
 
 
@@ -72,13 +64,13 @@ app.get('/auth',(req,res) => {
 app.post('/login',async(req,res)=> {
     try{
         var b = req.body;
-        var email  = b['email'];
-        var password = b['password'];
-        const result = await AuthData.findOne({email:email});
+        //console.log(b);
+        const {eid, password} = b;
+        console.log(eid,password);
+        const result = await Tanmay_111915132_detail.findOne({eid:eid});
         if(result){
-            const result2 = await AuthData.findOne({email:email,password:password});
+            const result2 = await Tanmay_111915132_detail.findOne({email:email,password:password});
             if(result2){
-                login__ == true;
                 var message = "login successful";
                 var code = 200;
                 return res.send({status: message,code:code});
@@ -90,35 +82,47 @@ app.post('/login',async(req,res)=> {
     }
     catch(err){
         var code = 404;
-        var message = "login failed try again";
+        var message = "login success";
         return res.send({status: message,code:code});
     }
 });
 //sigup
 app.post('/signup', async(req,res) => {
-    try{
+   // try{
         var b = req.body;
-        console.log(b);
-        var email  = b['email'];
-        var password = b['password'];
-        const result = await AuthData.findOne({email:email});
-        console.log(result);
-        if(result){
-            var message = "email already exits"
-            return res.send({status: message});
-        }
-        var push = {email,password};
-        console.log(push);
-        var insertObj = new AuthData(push);
-        await insertObj.save();
+        //console.log(b);
+        const {eid, firstName, lastName, dob, contactNumber, password,jr,ms,yb} = b;
+        //console.log(eid,firstName,dob);
+        var newUser = {
+            eid,
+            firstName,
+            lastName,
+            dob,
+            contactNumber,
+            password
+        };
+        jobRole = jr;
+        monthlySalary = ms;
+        yearlyBonus = yb;
+        var userSalary = {
+            eid,
+            jobRole,
+            monthlySalary,
+            yearlyBonus
+        };
+        console.log(newUser);
+        //console.log(userSalary);
+        var ggg = new Tanmay_111915132_detail(newUser);
+        var yyy = new Tanmay_111915132_salary(userSalary);
+        await ggg.save();
+        await yyy.save();
         var status = "succefull signup";
         return res.send({status: status});
-
-    }   
-    catch(err){
-        var status = "signup error: " + err.toString();
-        return res.send({status: status});
-    }
+    //}   
+    // catch(err){
+    //     var status = "signup error: " + err.toString();
+    //     return res.send({status: status});
+    // }
 });
 //update
 app.post('/update', async(req,res) =>{
@@ -138,21 +142,9 @@ app.post('/update', async(req,res) =>{
 
 app.post("/fetch", async(req, res) => {
     try{
-        var zones = [];
-        fetch(
-            "https://www.gov.uk/bank-holidays.json"
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                for(let key in data){
-                    if(data.hasOwnProperty(key)){
-                        zones.push(key);
-                    }
-                }
-                console.log(zones);
-                return res.send({zones:zones} );
-            })
-            .catch((err) => console.log(err));
+       const d = Tanmay_111915132_detail.find({});
+       const e = Tanmay_111915132_salary.find({});
+       res.send({dd:d,ee:e});
             
     } catch (err){
         console.log("Err -- ", err);
